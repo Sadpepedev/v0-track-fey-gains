@@ -2,7 +2,7 @@ import { NextResponse } from "next/server"
 import { getCachedData, setCachedData } from "@/lib/supabase/cache"
 
 const CACHE_KEY = "dune_weth_buyback"
-const CACHE_DURATION = 1800 // 30 minutes
+const CACHE_DURATION = 30 // 30 seconds
 
 export const dynamic = "force-dynamic"
 
