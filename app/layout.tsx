@@ -24,11 +24,12 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/fey-logo.png", sizes: "any" },
-      { url: "/fey-logo.png", sizes: "32x32", type: "image/png" },
+      { url: "/fey-logo.png?v=3", sizes: "any" },
+      { url: "/fey-logo.png?v=3", sizes: "32x32", type: "image/png" },
+      { url: "/fey-logo.png?v=3", sizes: "16x16", type: "image/png" },
     ],
-    apple: "/fey-logo.png",
-    shortcut: "/fey-logo.png",
+    apple: "/fey-logo.png?v=3",
+    shortcut: "/fey-logo.png?v=3",
   },
     generator: 'v0.app'
 }
