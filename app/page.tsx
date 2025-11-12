@@ -350,7 +350,7 @@ export default function Home() {
                     </p>
                     <div className="mt-2 space-y-2 border-t border-accent/20 pt-2 sm:mt-3 sm:space-y-2.5 sm:pt-3">
                       <div>
-                        <p className="text-[9px] font-semibold uppercase tracking-wide text-muted-foreground sm:text-[10px]">
+                        <p className="text-[9px] font-semibold uppercase tracking-wide text-muted-foreground sm:mb-1 sm:text-[10px]">
                           24H VOLUME
                         </p>
                         <p className="text-xs font-bold text-accent sm:text-sm lg:text-base">
@@ -718,6 +718,8 @@ export default function Home() {
               </div>
             </Card>
 
+            
+
             <Card className="bg-gradient-to-br from-muted/30 to-muted/50 p-4 shadow-lg sm:p-5 lg:p-6">
               <h3 className="mb-2 text-sm font-bold text-foreground sm:mb-3 sm:text-base lg:text-lg">
                 About This Tracker
@@ -743,6 +745,33 @@ export default function Home() {
                   <code className="rounded bg-background px-2 py-0.5 font-mono text-[11px] font-semibold text-foreground">
                     0x72f5565ab147105614ca4eb83ecf15f751fd8c50
                   </code>
+                </p>
+              </div>
+            </Card>
+
+            <Card className="mt-4 overflow-hidden border border-primary/30 bg-gradient-to-br from-primary/5 via-background to-accent/5 p-3 shadow-md sm:mt-6 sm:p-4">
+              <div className="mx-auto max-w-xl space-y-2 text-center sm:space-y-3">
+                <p className="text-[10px] italic text-muted-foreground sm:text-xs">Your spare FEY can go a long way</p>
+
+                <div className="space-y-2">
+                  <div className="rounded-md bg-background/60 px-2 py-1.5 sm:px-3 sm:py-2">
+                    <p className="text-[9px] font-semibold uppercase tracking-wide text-muted-foreground sm:text-[10px]">
+                      BNS
+                    </p>
+                    <p className="text-xs font-bold text-accent sm:text-sm">Feythful.base.eth</p>
+                  </div>
+                  <div className="rounded-md bg-background/60 px-2 py-1.5 sm:px-3 sm:py-2">
+                    <p className="text-[9px] font-semibold uppercase tracking-wide text-muted-foreground sm:text-[10px]">
+                      Address
+                    </p>
+                    <p className="break-all font-mono text-[10px] font-semibold text-primary sm:text-xs">
+                      0x83a07D79E7c33cD8C8D03AE43028b067bE020668
+                    </p>
+                  </div>
+                </div>
+
+                <p className="text-[9px] text-muted-foreground sm:text-[10px]">
+                  Thank you for supporting community-built tools! 🙏
                 </p>
               </div>
             </Card>
