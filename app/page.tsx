@@ -451,7 +451,7 @@ export default function Home() {
                     {duneBuybackData && wethPrice && calculateWethBuybackUSD() && (
                       <div className="rounded-xl bg-gradient-to-br from-accent/20 to-primary/10 p-4 backdrop-blur-sm sm:rounded-2xl sm:p-6">
                         <p className="mb-1.5 text-[10px] font-bold uppercase tracking-wide text-muted-foreground sm:mb-2 sm:text-xs lg:text-sm">
-                          🚀 Buyback Fuel
+                          🚀 Weth used in Buybacks 
                         </p>
                         <p
                           className="mb-0.5 bg-gradient-to-r from-primary to-accent bg-clip-text text-3xl font-black tracking-tight text-transparent sm:mb-1 sm:text-5xl lg:text-7xl"
