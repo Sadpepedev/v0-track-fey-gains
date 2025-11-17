@@ -37,6 +37,7 @@ A real-time dashboard for monitoring FEY token staking rewards and xFEY to FEY c
 - `/api/staked-supply` - Percentage of supply staked (5min cache)
 - `/api/history` - Historical conversion rate data
 - `/api/cron` - Hourly data collection job
+- `/api/thegraph-volume` - Total DEX volume and TVL from The Graph (30min cache)
 
 ### Database Schema
 
@@ -57,22 +58,6 @@ A real-time dashboard for monitoring FEY token staking rewards and xFEY to FEY c
 - data: jsonb
 - expires_at: timestamptz
 - created_at: timestamptz
-\`\`\`
-
-## Environment Variables
-
-Required environment variables (auto-configured via Vercel integrations):
-
-\`\`\`
-SUPABASE_URL
-SUPABASE_ANON_KEY
-SUPABASE_SERVICE_ROLE_KEY
-DUNE_API_KEY
-\`\`\`
-
-Optional:
-\`\`\`
-ALCHEMY_API_KEY (for faster blockchain queries)
 \`\`\`
 
 ## Setup
@@ -100,6 +85,7 @@ The `/api/cron` endpoint runs **every hour** to collect historical data points f
 - **WETH Buyback**: 30 seconds (real-time buyback tracking)
 - **Staking Rewards**: 30 minutes (slow-changing aggregate)
 - **Staked Supply**: 5 minutes (on-chain calculation)
+- **DEX Volume**: 30 minutes (The Graph subgraph data)
 
 All cached data is stored in Supabase with automatic expiration.
 
