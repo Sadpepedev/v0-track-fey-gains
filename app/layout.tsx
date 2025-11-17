@@ -16,11 +16,20 @@ export const metadata: Metadata = {
     title: "FEY Staking Tracker",
     description: "Track FEY staking rewards and conversion rates in real-time",
     type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "FEY Staking Tracker Dashboard",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "FEY Staking Tracker",
     description: "Track FEY staking rewards and conversion rates in real-time",
+    images: ["/og-image.png"],
   },
   icons: {
     icon: [

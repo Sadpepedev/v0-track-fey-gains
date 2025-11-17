@@ -451,19 +451,6 @@ export default function Home() {
                     <p className="mb-1 bg-gradient-to-r from-accent to-primary bg-clip-text text-4xl sm:text-5xl font-black text-primary">
                       {currentRate ? `${currentRate.percentageGain.toFixed(4)}%` : "—"}
                     </p>
-                    <p className="text-sm sm:text-base font-semibold text-foreground">
-                      {currentRate ? `+${currentRate.totalGain.toLocaleString()} FEY` : "—"}
-                    </p>
-                    {geckoData && calculateGainsUSDValue() && (
-                      <p className="mt-2 text-xs sm:text-sm font-semibold text-foreground">
-                        ≈ $
-                        {calculateGainsUSDValue()?.toLocaleString(undefined, {
-                          minimumFractionDigits: 2,
-                          maximumFractionDigits: 2,
-                        })}{" "}
-                        USD
-                      </p>
-                    )}
                   </div>
 
                   {/* Projected vAPR */}
@@ -562,7 +549,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="mb-4 sm:mb-6 rounded-2xl sm:rounded-3xl border border-border bg-card p-4 sm:p-6 shadow-lg">
+            <div className="mb-4 sm:mb-6 rounded-2xl sm:rounded-3xl border border-border/50 bg-muted/30 p-4 sm:p-6 shadow-lg">
               <h3 className="mb-3 sm:mb-4 text-base sm:text-lg font-black text-foreground">About This Tracker</h3>
               <div className="space-y-2 sm:space-y-3 text-xs sm:text-sm leading-relaxed text-muted-foreground">
                 <p>
