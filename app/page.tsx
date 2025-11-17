@@ -614,7 +614,7 @@ export default function Home() {
           <div className="space-y-1.5 sm:space-y-2 text-center text-[10px] sm:text-xs text-muted-foreground">
             <p>
               Disclaimer: This tracker is not affiliated with{" "}
-              <a href="https://fey.money" target="_blank" rel="noopener noreferrer" className="font-semibold text-accent hover:underline">
+              <a href="https://fey.money" target="_blank" rel="noopener noreferrer" className="font-semibold hover:underline text-primary">
                 Fey.money
               </a>
             </p>
@@ -624,20 +624,20 @@ export default function Home() {
                 href="https://dexscreener.com/base/0xe155c517c53f078f4b443c99436e42c1b80fd2fb1b3508f431c46b8365e4f3f0"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-semibold text-accent hover:underline"
+                className="font-semibold hover:underline text-primary"
               >
                 Dexscreener
               </a>
             </p>
             <p>
               Dashboard credit:{" "}
-              <a href="https://dune.com/0xwiz" target="_blank" rel="noopener noreferrer" className="font-semibold text-accent hover:underline">
+              <a href="https://dune.com/0xwiz" target="_blank" rel="noopener noreferrer" className="font-semibold hover:underline text-primary">
                 0x wiz on Dune
               </a>
             </p>
             <p>
               Built by{" "}
-              <a href="https://sadpepe.me" target="_blank" rel="noopener noreferrer" className="font-semibold text-accent hover:underline">
+              <a href="https://sadpepe.me" target="_blank" rel="noopener noreferrer" className="font-semibold hover:underline text-primary">
                 Sadpepe.me
               </a>
             </p>
