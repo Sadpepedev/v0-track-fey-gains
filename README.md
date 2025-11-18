@@ -49,8 +49,9 @@ All endpoints use Supabase caching to minimize external API calls and improve pe
 - `/api/history` - Historical conversion rate data from database
 - `/api/cron` - Hourly data collection job (Vercel Cron)
 - `/api/collect-data` - Manual data collection for development/testing
+- `/api/cron-dune-refresh` - Runs **every 8 hours** (midnight, 8am, 4pm UTC) to refresh staking rewards data
 
-### Database Schema
+## Database Schema
 
 **fey_rates** - Historical conversion rate tracking
 \`\`\`sql
@@ -97,6 +98,9 @@ THEGRAPH_API_KEY=
 
 # Alchemy (Optional - for faster RPC)
 ALCHEMY_API_KEY=
+
+# Vercel Cron Security (auto-generated in production)
+# CRON_SECRET is automatically set by Vercel - do not add manually
 \`\`\`
 
 ## Setup
@@ -131,14 +135,20 @@ ALCHEMY_API_KEY=
 
 ## Cron Jobs
 
-The `/api/cron` endpoint runs **every hour** via Vercel Cron to collect historical data points for tracking conversion rate growth over time. Configuration in `vercel.json`:
+One cron job runs automatically in production via Vercel Cron:
+
+**Historical Data Collection** (`/api/cron`) - Runs **every hour** to collect conversion rate data points for historical tracking
+
+Configuration in `vercel.json`:
 
 \`\`\`json
 {
-  "crons": [{
-    "path": "/api/cron",
-    "schedule": "0 * * * *"
-  }]
+  "crons": [
+    {
+      "path": "/api/cron",
+      "schedule": "0 * * * *"
+    }
+  ]
 }
 \`\`\`
 
@@ -152,7 +162,7 @@ Aggressive caching minimizes API costs and improves performance:
 | FEY Price | 60 seconds | Real-time price tracking |
 | WETH Price | 5 minutes | Less volatile asset |
 | WETH Buyback | 30 seconds | Real-time buyback tracking |
-| Staking Rewards | 30 minutes | Slow-changing aggregate |
+| Staking Rewards | 30 minutes | Dune materialized views |
 | Staked Supply | 5 minutes | On-chain calculation |
 | DEX Volume | 30 minutes | The Graph subgraph data |
 

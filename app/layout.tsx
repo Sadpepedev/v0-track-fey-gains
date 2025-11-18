@@ -8,7 +8,7 @@ const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "FEY Staking Tracker | Monitor xFEY to FEY Conversion Rates",
+  title: "FeyTrack | Monitor xFEY to FEY Conversion Rates",
   description:
     "Track your FEY token staking rewards and conversion rates in real-time. Monitor percentage gains from the 1:1 baseline and view total rewards distributed to stakers.",
   keywords: ["FEY", "xFEY", "staking", "crypto", "rewards", "Base", "blockchain", "DeFi"],
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "FEY Staking Tracker",
+    title: "FeyTrack",
     description: "Track FEY staking rewards and conversion rates in real-time",
     images: ["/og-image.png"],
   },

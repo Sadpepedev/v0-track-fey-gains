@@ -261,14 +261,14 @@ export default function Home() {
     <div className="min-h-screen bg-background">
       <header className="sticky top-0 z-50 border-b border-border/50 bg-card/70 backdrop-blur-xl">
         <div className="mx-auto max-w-7xl px-3 py-4 sm:px-6 sm:py-6 lg:px-8">
-          <div className="flex items-center justify-between flex-row">
+          <div className="flex items-center justify-center flex-row">
             <div className="flex items-center gap-2 sm:gap-4">
               <div className="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-xl bg-gradient-to-br from-accent to-primary shadow-lg glow-accent-sm bg-ring text-primary">
                 <span className="text-xl sm:text-2xl font-black text-accent-foreground">F</span>
               </div>
               <div>
                 <h1 className="bg-gradient-to-r from-accent via-primary to-accent bg-clip-text text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-primary">
-                  FEY Dashboard
+                  FeyTrack
                 </h1>
                 <p className="text-[10px] sm:text-xs font-medium text-muted-foreground">Real-time staking analytics</p>
               </div>
@@ -323,7 +323,6 @@ export default function Home() {
                         ? `$${(geckoData.fdvUSD / 1000000).toFixed(3)}M`
                         : "N/A"}
                     </p>
-                    
                   </div>
                 </div>
 
@@ -338,11 +337,13 @@ export default function Home() {
                       </p>
                       <div className="mt-2 sm:mt-3 space-y-0.5 sm:space-y-1 rounded-lg bg-muted/50 px-2 sm:px-3 py-1.5 sm:py-2">
                         <p className="text-[10px] sm:text-xs font-semibold text-card-foreground">
-                          TVL: ${(thegraphVolume.totalValueLockedUSD / 1000).toFixed(1)}K
+                          LP Liquidity: ${(thegraphVolume.totalValueLockedUSD / 1000).toFixed(1)}K
                         </p>
-                        <p className="text-[10px] sm:text-xs font-semibold text-foreground">
-                          {thegraphVolume.txCount.toLocaleString()} txns
-                        </p>
+                        {geckoData && geckoData.volume24h && (
+                          <p className="text-[10px] sm:text-xs font-semibold text-foreground">
+                            24h Vol: ${(geckoData.volume24h / 1000).toFixed(1)}K
+                          </p>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -359,12 +360,17 @@ export default function Home() {
                         : "0.00"}
                       %
                     </p>
-                    <div className="mt-2 sm:mt-3 rounded-lg bg-muted/50 px-2 sm:px-3 py-1 sm:py-1.5">
+                    <div className="mt-2 sm:mt-3 space-y-0.5 sm:space-y-1 rounded-lg bg-muted/50 px-2 sm:px-3 py-1.5 sm:py-2">
                       <p className="text-[10px] sm:text-xs font-semibold text-foreground">
                         {stakedSupply.totalStaked && typeof stakedSupply.totalStaked === "number"
                           ? `${(stakedSupply.totalStaked / 1000000000).toFixed(2)}B FEY`
                           : "N/A"}
                       </p>
+                      {stakedSupply.totalStaked && geckoData && (
+                        <p className="text-[10px] sm:text-xs font-semibold text-card-foreground">
+                          TVL: ${(stakedSupply.totalStaked * geckoData.priceUSD / 1000000).toFixed(2)}M
+                        </p>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -386,7 +392,7 @@ export default function Home() {
                     <div className="absolute right-0 top-0 h-40 w-40 translate-x-10 -translate-y-10 rounded-full bg-accent/10 blur-3xl" />
                     <div className="relative text-center">
                       <p className="mb-3 text-xs sm:text-sm font-bold uppercase tracking-wider text-accent bg-primary">Staking Rewards</p>
-                      <p className="mb-2 text-4xl sm:text-5xl font-black tracking-tight border-primary text-primary">
+                      <p className="mb-2 text-4xl sm:text-5xl font-black tracking-tight text-primary">
                         {duneData.totalFeyAwarded.toLocaleString()}
                       </p>
                       <p className="mb-4 text-sm sm:text-base font-semibold text-foreground">FEY Tokens</p>
@@ -494,7 +500,7 @@ export default function Home() {
                     <p className="mb-1 text-3xl sm:text-4xl font-black text-foreground">
                       {currentRate ? currentRate.conversionRate.toFixed(6) : "—"}
                     </p>
-                    <p className="text-xs sm:text-sm font-medium text-muted-foreground">FEY per xFEY</p>
+                    <p className="text-xs sm:text-sm font-medium text-foreground">FEY per xFEY</p>
                   </div>
 
                   {/* Time Elapsed */}
@@ -503,14 +509,14 @@ export default function Home() {
                       Time Elapsed
                     </p>
                     <p className="mb-1 text-3xl sm:text-4xl font-black text-foreground">{calculateTimeElapsed()}</p>
-                    <p className="text-xs sm:text-sm font-medium text-muted-foreground">Since launch (Nov 1, 2025)</p>
+                    <p className="text-xs sm:text-sm font-medium text-foreground">Since launch (Nov 1, 2025)</p>
                   </div>
                 </div>
               </div>
             </div>
 
             <div className="mb-6 sm:mb-8 overflow-hidden rounded-2xl sm:rounded-3xl border border-border bg-card shadow-2xl">
-              <div className="border-b border-border bg-gradient-to-r from-accent/5 via-primary/5 to-accent/5 p-4 sm:p-6">
+              <div className="border-b border-border bg-gradient-to-r from-primary/5 via-accent/5 to-primary/5 p-4 sm:p-6">
                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0">
                   <div>
                     <h3 className="text-lg sm:text-xl font-black tracking-tight text-foreground">WETH Buybacks</h3>
@@ -532,20 +538,6 @@ export default function Home() {
               </div>
               <div className="relative h-[300px] sm:h-[400px] w-full bg-muted/10">
                 <iframe src="https://dune.com/embeds/6193023/9884738" className="h-full w-full border-0" />
-              </div>
-            </div>
-
-            <div className="mb-6 sm:mb-8 overflow-hidden rounded-2xl sm:rounded-3xl border border-border bg-card shadow-2xl">
-              <div className="border-b border-border bg-gradient-to-r from-primary/5 via-accent/5 to-primary/5 p-4 sm:p-6">
-                <div>
-                  <h3 className="text-lg sm:text-xl font-black tracking-tight text-foreground">FEY Staking Rewards</h3>
-                  <p className="mt-1 text-[10px] sm:text-xs font-medium text-muted-foreground">
-                    Total FEY distributed to stakers
-                  </p>
-                </div>
-              </div>
-              <div className="relative h-[300px] sm:h-[400px] w-full bg-muted/10">
-                <iframe src="https://dune.com/embeds/6192852/9884506" className="h-full w-full border-0" />
               </div>
             </div>
 
@@ -577,7 +569,7 @@ export default function Home() {
             </div>
 
             <div className="mb-4 sm:mb-6 rounded-xl sm:rounded-2xl border border-border/50 bg-muted/30 p-3 sm:p-4 text-center">
-              <p className="mb-2 sm:mb-3 text-[10px] sm:text-xs italic text-primary">Your spare FEY can go a long way</p>
+              <p className="mb-2 sm:mb-3 text-[9px] sm:text-[10px] italic text-primary">Your spare FEY can go a long way</p>
               <div className="mx-auto max-w-md space-y-1.5 sm:space-y-2">
                 <div className="rounded-lg bg-card px-2 sm:px-3 py-1.5 sm:py-2">
                   <p className="text-[9px] sm:text-[10px] font-semibold uppercase text-muted-foreground">BNS</p>
