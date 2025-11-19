@@ -336,7 +336,7 @@ export default function Home() {
                         ${(thegraphVolume.volumeUSD / 1000000).toFixed(2)}M
                       </p>
                       <div className="mt-2 sm:mt-3 space-y-0.5 sm:space-y-1 rounded-lg bg-muted/50 px-2 sm:px-3 py-1.5 sm:py-2">
-                        <p className="text-[10px] sm:text-xs font-semibold text-card-foreground">
+                        <p className="text-[10px] sm:text-xs font-semibold text-muted-foreground">
                           LP Liquidity: ${(thegraphVolume.totalValueLockedUSD / 1000).toFixed(1)}K
                         </p>
                         {geckoData && geckoData.volume24h && (
@@ -367,7 +367,7 @@ export default function Home() {
                           : "N/A"}
                       </p>
                       {stakedSupply.totalStaked && geckoData && (
-                        <p className="text-[10px] sm:text-xs font-semibold text-card-foreground">
+                        <p className="text-[10px] sm:text-xs font-semibold text-muted-foreground">
                           TVL: ${(stakedSupply.totalStaked * geckoData.priceUSD / 1000000).toFixed(2)}M
                         </p>
                       )}
@@ -391,13 +391,13 @@ export default function Home() {
                   <div className="group relative overflow-hidden rounded-2xl border bg-card/80 p-6 backdrop-blur-sm transition-all hover:border-accent hover:glow-accent-sm border-primary-foreground">
                     <div className="absolute right-0 top-0 h-40 w-40 translate-x-10 -translate-y-10 rounded-full bg-accent/10 blur-3xl" />
                     <div className="relative text-center">
-                      <p className="mb-3 text-xs sm:text-sm font-bold uppercase tracking-wider text-accent bg-primary">Staking Rewards</p>
+                      <p className="mb-3 text-xs sm:text-sm font-bold uppercase tracking-wider text-accent">Staking Rewards</p>
                       <p className="mb-2 text-4xl sm:text-5xl font-black tracking-tight text-primary">
                         {duneData.totalFeyAwarded.toLocaleString()}
                       </p>
                       <p className="mb-4 text-sm sm:text-base font-semibold text-foreground">FEY Tokens</p>
                       <div className="rounded-xl bg-accent/10 px-4 py-3">
-                        <p className="text-2xl sm:text-3xl font-black text-primary bg-card">
+                        <p className="text-2xl sm:text-3xl font-black text-primary">
                           $
                           {calculateTotalAwardedUSD()?.toLocaleString(undefined, {
                             minimumFractionDigits: 0,
@@ -415,7 +415,7 @@ export default function Home() {
                   <div className="group relative overflow-hidden rounded-2xl border bg-card/80 p-6 backdrop-blur-sm transition-all hover:border-primary hover:glow-primary border-primary-foreground">
                     <div className="absolute right-0 top-0 h-40 w-40 translate-x-10 -translate-y-10 rounded-full bg-primary/10 blur-3xl" />
                     <div className="relative text-center">
-                      <p className="mb-3 text-xs sm:text-sm font-bold uppercase tracking-wider text-card bg-primary">Weth used for buybacks</p>
+                      <p className="mb-3 text-xs sm:text-sm font-bold uppercase tracking-wider text-primary">Weth used for buybacks</p>
                       <p className="mb-2 text-4xl sm:text-5xl font-black tracking-tight text-primary">
                         {duneBuybackData.totalWethBuyback.toLocaleString(undefined, {
                           minimumFractionDigits: 2,
@@ -423,8 +423,8 @@ export default function Home() {
                         })}
                       </p>
                       <p className="mb-4 text-sm sm:text-base font-semibold text-foreground">WETH</p>
-                      <div className="rounded-xl px-4 py-3 bg-card">
-                        <p className="text-2xl sm:text-3xl font-black text-primary bg-card">
+                      <div className="rounded-xl px-4 py-3 bg-primary/10">
+                        <p className="text-2xl sm:text-3xl font-black text-primary">
                           $
                           {calculateWethBuybackUSD()?.toLocaleString(undefined, {
                             minimumFractionDigits: 0,
@@ -477,7 +477,7 @@ export default function Home() {
                     <p className="mb-1 sm:mb-2 text-[10px] sm:text-xs font-bold uppercase tracking-wider text-muted-foreground">
                       Current Value (1M xFEY)
                     </p>
-                    <p className="mb-1 text-4xl sm:text-5xl font-black text-primary">
+                    <p className="mb-1 text-4xl sm:text-5xl font-black text-foreground">
                       {currentRate ? currentRate.feyAmount.toLocaleString() : "—"}
                     </p>
                     {geckoData && calculateCurrentFeyUSD() && (
@@ -541,30 +541,25 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="mb-4 sm:mb-6 rounded-2xl sm:rounded-3xl border border-border/50 bg-muted/30 p-4 sm:p-6 shadow-lg">
-              <h3 className="mb-3 sm:mb-4 text-base sm:text-lg font-black text-foreground">About This Tracker</h3>
-              <div className="space-y-2 sm:space-y-3 text-xs sm:text-sm leading-relaxed text-muted-foreground">
-                <p>
-                  This tracker monitors the conversion rate between xFEY (staked FEY) and FEY tokens by calling the{" "}
-                  <code className="rounded-md bg-muted px-2 py-0.5 font-mono text-xs sm:text-sm font-semibold text-foreground">
-                    previewRedeem
-                  </code>{" "}
-                  function on the Base blockchain every hour.
-                </p>
-                <p>
-                  <strong className="font-semibold text-foreground">Baseline:</strong> The 1:1 ratio was established on
-                  Nov 1, 2025 at 12:57:29 AM UTC when the contract launched.
-                </p>
-                <p>
-                  <strong className="font-semibold text-foreground">Base Amount:</strong> 1,000,000 xFEY tokens are used
-                  as the reference amount for tracking percentage gains.
-                </p>
-                <p>
-                  <strong className="font-semibold text-foreground">Contract:</strong>{" "}
-                  <code className="rounded-md bg-muted px-2 py-0.5 font-mono text-xs sm:text-sm font-semibold text-primary">
-                    0x72f5565ab147105614ca4eb83ecf15f751fd8c50
-                  </code>
-                </p>
+            <div className="mb-6 sm:mb-8 overflow-hidden rounded-2xl sm:rounded-3xl border border-border bg-card shadow-2xl">
+              <div className="border-b border-border bg-gradient-to-r from-accent/5 via-primary/5 to-accent/5 p-4 sm:p-6">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0">
+                  <div>
+                    <h3 className="text-lg sm:text-xl font-black tracking-tight text-foreground">FEY Staking Rewards</h3>
+                    <p className="mt-1 text-[10px] sm:text-xs font-medium text-muted-foreground">Total rewards distributed over time</p>
+                  </div>
+                  {duneData && geckoData && (
+                    <div className="rounded-xl border border-primary/30 bg-primary/10 px-3 sm:px-4 py-2">
+                      <p className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-foreground">Total Awarded</p>
+                      <p className="text-sm sm:text-lg font-black text-muted-foreground">
+                        {duneData.totalFeyAwarded.toLocaleString()} FEY
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </div>
+              <div className="relative h-[300px] sm:h-[400px] w-full bg-muted/10">
+                <iframe src="https://dune.com/embeds/6192852/9884506?darkMode=true" className="h-full w-full border-0" />
               </div>
             </div>
 
